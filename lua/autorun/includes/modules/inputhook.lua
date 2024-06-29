@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\autorun\\includes\\modules\\inputhook.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local IsValid = IsValid
 local pairs = pairs
 local RealTime = RealTime

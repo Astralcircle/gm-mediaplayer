@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mp_menu\\volume_control.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local math = math
 local ceil = math.ceil
 local clamp = math.Clamp
@@ -191,7 +193,7 @@ local REPEAT_BTN = {}
 function REPEAT_BTN:Init()
 	self.BaseClass.Init( self )
 	self:SetIcon( "mp-repeat" )
-	self:SetTooltip( "Repeat" )
+	self:SetTooltip( "Повторять" )
 end
 
 function REPEAT_BTN:DoClick()
@@ -207,7 +209,7 @@ local SHUFFLE_BTN = {}
 function SHUFFLE_BTN:Init()
 	self.BaseClass.Init( self )
 	self:SetIcon( "mp-shuffle" )
-	self:SetTooltip( "Shuffle" )
+	self:SetTooltip( "Перемешать" )
 end
 
 function SHUFFLE_BTN:DoClick()
@@ -223,7 +225,7 @@ local LOCK_BTN = {}
 function LOCK_BTN:Init()
 	self.BaseClass.Init( self )
 	self:SetIcon( "mp-lock-open" )
-	self:SetTooltip( "Toggle Queue Lock" )
+	self:SetTooltip( "Заблокировать очередь видео от редактирования" )
 end
 
 function LOCK_BTN:DoClick()

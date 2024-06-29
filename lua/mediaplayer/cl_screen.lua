@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\cl_screen.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 --[[---------------------------------------------------------
 	Pass mouse clicks into media player browser
 -----------------------------------------------------------]]
@@ -69,7 +71,8 @@ local function mousePressed( mouseCode, aimVector )
 		return
 	end
 
-	MediaPlayer.DispatchScreenTrace( mpMouseReleased, aimVector )
+	-- ПОЧЕМУ НАМ ЭТО НУЖНО????
+	-- MediaPlayer.DispatchScreenTrace( mpMouseReleased, aimVector )
 end
 hook.Add( "GUIMouseReleased", "MediaPlayer.ScreenIntersect", mousePressed )
 

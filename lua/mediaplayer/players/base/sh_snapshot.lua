@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\players\\base\\sh_snapshot.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 function MEDIAPLAYER:GetSnapshot()
 	local queue = table.Copy( self:GetMediaQueue() )
 	local media = self:GetMedia()

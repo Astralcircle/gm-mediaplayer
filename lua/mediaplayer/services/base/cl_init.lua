@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\services\\base\\cl_init.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 include "shared.lua"
 
 function SERVICE:Volume( volume )

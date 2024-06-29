@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\autorun\\properties\\mediaplayer.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local mporder = 3200
 
 --
@@ -21,7 +23,7 @@ end
 
 local function IsPrivilegedMediaPlayer( self, ent, ply )
 	return IsMediaPlayer( self, ent, ply ) and
-		( ply:IsAdmin() or ent:GetOwner() == ply )
+		( ent:GetOwner() == ply )
 end
 
 local function HasMedia( mp )

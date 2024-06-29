@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\entities\\mediaplayer_base\\shared.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 ENT.Type = "anim"
 ENT.Base = "base_anim"
 
@@ -46,6 +48,15 @@ function ENT:OnRemove()
 	local mp = self:GetMediaPlayer()
 	if mp then
 		mp:Remove()
+
+		if SERVER then 
+			mp:Remove()
+		else
+			timer.Simple(5,function()
+				if self:IsValid() then return end
+				mp:Remove()
+			end)
+		end
 	end
 end
 

@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mp_menu\\icons.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local spritesheet = spritesheet
 
 --[[--------------------------------------------

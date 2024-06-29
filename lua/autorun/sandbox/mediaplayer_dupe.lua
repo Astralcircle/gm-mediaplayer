@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\autorun\\sandbox\\mediaplayer_dupe.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local MEDIAPLAYER_DUPE = nil
 local MEDIAPLAYER_SAVE = false
 local MEDIAPLAYER_THUMBNAIL = nil

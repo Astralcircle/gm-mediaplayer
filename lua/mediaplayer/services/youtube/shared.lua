@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\services\\youtube\\shared.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 DEFINE_BASECLASS( "mp_service_base" )
 
 SERVICE.Name 	= "YouTube"
@@ -7,10 +9,10 @@ SERVICE.Base 	= "browser"
 local YtVideoIdPattern = "[%a%d-_]+"
 local UrlSchemes = {
 	"youtube%.com/watch%?v=" .. YtVideoIdPattern,
+	"youtube%.com/shorts/" .. YtVideoIdPattern,
 	"youtu%.be/watch%?v=" .. YtVideoIdPattern,
 	"youtube%.com/v/" .. YtVideoIdPattern,
-	"youtu%.be/v/" .. YtVideoIdPattern,
-	"youtube%.googleapis%.com/v/" .. YtVideoIdPattern
+	"youtu%.be/v/" .. YtVideoIdPattern
 }
 
 function SERVICE:New( url )
@@ -54,13 +56,9 @@ function SERVICE:GetYouTubeVideoId()
 		if url.query and url.query.v then
 			videoId = url.query.v
 
-		-- http://www.youtube.com/v/(videoId)
-		elseif url.path and string.match(url.path, "^/v/([%a%d-_]+)") then
-			videoId = string.match(url.path, "^/v/([%a%d-_]+)")
-
-		-- http://youtube.googleapis.com/v/(videoId)
-		elseif url.path and string.match(url.path, "^/v/([%a%d-_]+)") then
-			videoId = string.match(url.path, "^/v/([%a%d-_]+)")
+		-- http://www.youtube.com/shorts/(videoId)
+		elseif url.path and string.match(url.path, "^/shorts/([%a%d-_]+)") then
+			videoId = string.match(url.path, "^/shorts/([%a%d-_]+)")
 
 		-- http://youtu.be/(videoId)
 		elseif string.match(url.host, "youtu.be") and

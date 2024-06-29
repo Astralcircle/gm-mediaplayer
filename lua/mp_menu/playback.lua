@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mp_menu\\playback.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local math = math
 local ceil = math.ceil
 local clamp = math.Clamp
@@ -48,7 +50,6 @@ function PANEL:Init()
 	self.Seekbar = vgui.Create( "MP.Seekbar", self )
 
 	self.NextThink = 0
-
 end
 
 function PANEL:AddButton( panel )
@@ -59,12 +60,11 @@ function PANEL:Think()
 
 	local rt = RealTime()
 
-	if rt > self.NextThink then
+	if rt > (self.NextThink or 0) then
 		-- Perform layout every second for when the media label changes width
 		self:InvalidateLayout()
 		self.NextThink = rt + 1
 	end
-
 end
 
 function PANEL:OnMediaChanged( media )
@@ -82,7 +82,7 @@ function PANEL:OnMediaChanged( media )
 		self.FavBtn:Hide()
 		self.BtnList:Show()
 	else
-		self.MediaTitle:SetText( "No media playing" )
+		self.MediaTitle:SetText( "Ничего не проигрывается" )
 		self.MediaTitle:SetTooltip( "" )
 
 		self.AddedByLbl:Hide()

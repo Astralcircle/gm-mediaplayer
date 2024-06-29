@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\autorun\\includes\\modules\\browserpool.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 if browserpool then return end -- ignore Lua refresh
 
 local table = table
@@ -33,7 +35,7 @@ local pending = {}
 -- Minimum number of active browsers to be pooled.
 -- @type Number
 --
-local numMin = 2
+local numMin = 0
 
 ---
 -- Maximum number of active browsers to be pooled.
@@ -83,7 +85,7 @@ local function setupPanel( panel )
 	if panel then
 		panel:Stop()
 	else
-		panel = vgui.Create("DMediaPlayerHTML")
+		panel = vgui_Create("DMediaPlayerHTML")
 	end
 
 	-- Hide panel

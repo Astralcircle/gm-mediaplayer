@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\sh_mediaplayer.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 if SERVER then
 	include "players/components/vote.lua"
 	include "players/components/voteskip.lua"

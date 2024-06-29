@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\services\\audiofile\\shared.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local urllib = url
 
 SERVICE.Name 	= "Audio file"

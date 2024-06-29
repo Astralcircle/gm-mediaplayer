@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\autorun\\includes\\modules\\spritesheet.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local math = math
 local surface = surface
 local table = table

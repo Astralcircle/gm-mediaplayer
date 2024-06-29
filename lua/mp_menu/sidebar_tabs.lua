@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mp_menu\\sidebar_tabs.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local math = math
 local ceil = math.ceil
 local clamp = math.Clamp

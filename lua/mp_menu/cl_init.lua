@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mp_menu\\cl_init.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 MP = MP or {}
 MP.EVENTS = MP.EVENTS or {}
 

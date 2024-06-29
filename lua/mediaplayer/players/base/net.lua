@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\players\\base\\net.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local net = net
 local CeilPower2 = MediaPlayerUtils.CeilPower2
 

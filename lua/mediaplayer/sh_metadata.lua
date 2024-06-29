@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\sh_metadata.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 --[[---------------------------------------------------------
 	Media Player Metadata
 
@@ -100,6 +102,9 @@ end
 -- @param media		Media service object.
 -- @return table	SQL query results.
 --
+
+local null_tbl = util.TableToJSON({})
+
 function MediaPlayer.Metadata:Save( media )
 	local id = media:UniqueID()
 	if not id then return end
@@ -126,7 +131,7 @@ function MediaPlayer.Metadata:Save( media )
 						sql.SQLStr( media:Title() ),
 						media:Duration(),
 						sql.SQLStr( media:Thumbnail() ),
-						sql.SQLStr( util.TableToJSON(media._metadata.extra or {}) ),
+						sql.SQLStr( util.TableToJSON(media._metadata and type(media._metadata.extra) ~= "nil" and media._metadata.extra or {}) ),
 						os.time(),
 						os.time(),
 						id )
@@ -146,7 +151,7 @@ function MediaPlayer.Metadata:Save( media )
 			string.format( "%s,", sql.SQLStr( media:Title() ) ) ..
 			string.format( "%s,", media:Duration() ) ..
 			string.format( "%s,", sql.SQLStr( media:Thumbnail() ) ) ..
-			string.format( "%s,", sql.SQLStr( util.TableToJSON(media._metadata.extra or {}) ) ) ..
+			string.format( "%s,", sql.SQLStr( type(media._metadata.extra) == "table" and util.TableToJSON(media._metadata.extra) or null_tbl ) ) ..
 			string.format( "%d,", os.time() ) ..
 			string.format( "%d)", os.time() )
 

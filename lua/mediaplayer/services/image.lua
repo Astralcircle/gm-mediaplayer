@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\services\\image.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 SERVICE.Name 	= "Image"
 SERVICE.Id 		= "img"
 SERVICE.Base 	= "res"

@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\sh_events.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 MP.EVENTS = {
 	MEDIA_CHANGED = "mediaChanged",
 	QUEUE_CHANGED = "mp.events.queueChanged",

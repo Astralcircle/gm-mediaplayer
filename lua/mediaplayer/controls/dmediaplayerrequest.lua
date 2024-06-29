@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\controls\\dmediaplayerrequest.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local PANEL = {}
 PANEL.HistoryWidth = 300
 PANEL.BackgroundColor = Color(22, 22, 22)

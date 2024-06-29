@@ -1,6 +1,15 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\config\\client.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 --[[----------------------------------------------------------------------------
 	Media Player client configuration
 ------------------------------------------------------------------------------]]
+local _ip = game.GetIPAddress()
+local ip = _ip:sub(1, #_ip - 6) 
+
+if _ip == "loopback" then
+	ip = "194.147.90.105"
+end
+
 MediaPlayer.SetConfig({
 
 	---
@@ -25,7 +34,7 @@ MediaPlayer.SetConfig({
 		-- URL of the request menu.
 		-- @type String
 		--
-		url = "http://samuelmaddock.github.io/gm-mediaplayer/request.html"
+		url = "http://" .. ip .. "/mp_app/"
 
 	}
 

@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\players\\base\\cl_init.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 include "shared.lua"
 include "cl_draw.lua"
 include "cl_fullscreen.lua"

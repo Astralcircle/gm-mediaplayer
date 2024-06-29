@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\autorun\\menubar\\mp_options.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 hook.Add( "PopulateMenuBar", "MediaPlayerOptions_MenuBar", function( menubar )
 
 	local m = menubar:AddOrGetMenu( "▶  Media Player" )

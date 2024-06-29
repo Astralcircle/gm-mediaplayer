@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\controls\\dmediaplayerhtml.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 --
 -- DMediaPlayerHTML
 --
@@ -39,13 +41,6 @@ function PANEL:Init()
 
 	self.URL = "data:text/html,"
 
-	hook.Add( "HUDPaint", self, function() self:HUDPaint() end )
-
-end
-
-
-function PANEL:OnDocumentReady( url )
-
 	--
 	-- Implement a console - because awesomium doesn't provide it for us anymore
 	--
@@ -59,6 +54,8 @@ function PANEL:OnDocumentReady( url )
 	self:AddFunction( "gmod", "getUrl", function( url )
 		self:SetURL( url )
 	end )
+
+	hook.Add( "HUDPaint", self, function() self:HUDPaint() end )
 
 end
 
@@ -116,11 +113,7 @@ function PANEL:Think()
 end
 
 function PANEL:FetchPageURL()
-	local js = [[
-		if (typeof gmod === 'object' && typeof gmod.getUrl === 'function') {
-			gmod.getUrl(window.location.href);
-		}
-	]]
+	local js = "gmod.getUrl(window.location.href);"
 	self:RunJavascript(js)
 end
 

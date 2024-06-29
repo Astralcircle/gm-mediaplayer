@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mp_menu\\queue.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local math = math
 local ceil = math.ceil
 local clamp = math.Clamp
@@ -45,11 +47,20 @@ function QUEUE_HEADER:Init()
 	self:SetTall( self.Height )
 
 	self.Label = vgui.Create( "DLabel", self )
-	self.Label:SetText( "NEXT UP" )
+	self.Label:SetText( "В ОЧЕРЕДИ:" )
+	self.Label:SetSize(150, 30)
 	self.Label:SetFont( "MP.QueueHeader" )
 
 	self.AddVidBtn = vgui.Create( "MP.AddVideoButton", self )
+	self.PlaylistBtn = vgui.Create( "MP.AddVideoButton", self )
+	self.PlaylistBtn.BtnLbl:SetText("ПЛЕЙЛИСТ")
 
+	self.PlaylistBtn.DoClick = function()
+		Derma_StringRequest("MediaPlayer", "Введите ID плейлиста или введите ссылку на любое видео с плейлистом.\n(пример: https://www.youtube.com/watch?v=[id видео]&list=[id плейлиста])", "",
+		function(text)
+			RunConsoleCommand("ytplaylist", text)
+		end, nil, "Подтвердить", "Отмена")
+	end
 end
 
 function QUEUE_HEADER:Paint( w, h )
@@ -68,6 +79,9 @@ function QUEUE_HEADER:PerformLayout()
 	self.AddVidBtn:CenterVertical()
 	self.AddVidBtn:AlignRight( self.Padding )
 
+	self.PlaylistBtn:InvalidateLayout()
+	self.PlaylistBtn:CenterVertical()
+	self.PlaylistBtn:AlignRight( 125 )
 end
 
 derma.DefineControl( "MP.QueueHeader", "", QUEUE_HEADER, "Panel" )
@@ -92,7 +106,7 @@ function ADD_VIDEO_BTN:Init()
 	self:SetPadding( 4 )
 
 	self.BtnLbl:SetFont( "MP.QueueHeader" )
-	self.BtnLbl:SetText( "ADD MEDIA" )
+	self.BtnLbl:SetText( "ДОБАВИТЬ" )
 	self.BtnLbl:SetTextColor( color_white )
 
 	self:SetIcon( "mp-plus" )

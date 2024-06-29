@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\services\\resource\\cl_init.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 include "shared.lua"
 
 DEFINE_BASECLASS( "mp_service_browser" )

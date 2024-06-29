@@ -1,14 +1,5 @@
---[[__                                       _
- / _| __ _  ___ ___ _ __  _   _ _ __   ___| |__
-| |_ / _` |/ __/ _ \ '_ \| | | | '_ \ / __| '_ \
-|  _| (_| | (_|  __/ |_) | |_| | | | | (__| | | |
-|_|  \__,_|\___\___| .__/ \__,_|_| |_|\___|_| |_|
-                   |_| 2010 --]]
-
---[[---------------------------------------------------------
-	Browser controls
------------------------------------------------------------]]
-
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\controls\\dhtmlcontrols.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local urllib = url
 
 local PANEL = {}
@@ -96,9 +87,8 @@ function PANEL:Init()
 	self:SetButtonColor( Color( 250, 250, 250, 200 ) )
 	self.BorderSize = 4
 	self.BackgroundColor = Color( 33, 33, 33, 255 )
-	self:SetHomeURL( "http://www.google.com" )
-
 end
+
 
 function PANEL:SetHTML( html )
 
@@ -112,24 +102,35 @@ function PANEL:SetHTML( html )
 	self.AddressBar:SetText( self:GetHomeURL() )
 	self:UpdateHistory( self:GetHomeURL() )
 
+	local browser= self.HTML
+	browser.OnBeginLoadingDocument = function(browser, url)
+		self.AddressBar:SetText(url)
+
+		-- Check for valid URL
+		local isValidUrl = MediaPlayer.ValidUrl( url )
+		self.RequestButton:SetDisabled( not isValidUrl )
+
+		if isValidUrl then
+			self.HTML:SetURL(url)
+		end
+	end
+
+	browser.OnDocumentReady = browser.OnBeginLoadingDocument
+	browser.OnChangeTargetURL = browser.OnBeginLoadingDocument
+
 	local OnFinishLoading = self.HTML.OnFinishLoading
-	self.HTML.OnFinishLoading = function( panel )
-
-		local url = self.HTML:GetURL()
-
-		self.AddressBar:SetText( url )
+	self.HTML.OnFinishLoadingDocument = function( panel, url )
+        panel:OnBeginLoadingDocument(url)
 		self:FinishedLoading()
 
 		if OnFinishLoading then
 			OnFinishLoading( panel )
 		end
-
 	end
 
 	local OnURLChanged = self.HTML.OnURLChanged
 	self.HTML.OnURLChanged = function ( panel, url )
-
-		self.AddressBar:SetText( url )
+		self.AddressBar:SetText(url)
 		self.NavStack = self.NavStack + 1
 		self:StartedLoading()
 		self:UpdateHistory( url )
@@ -204,13 +205,9 @@ end
 
 function PANEL:FinishedLoading()
 
-	self.RefreshButton:SetDisabled( false )
-
 end
 
 function PANEL:StartedLoading()
-
-	self.RefreshButton:SetDisabled( true )
 
 end
 
@@ -271,9 +268,9 @@ end
 
 function RequestButton:SetDisabled( disabled )
 	if disabled then
-		self:SetText( "SEARCH FOR MEDIA" )
+		self:SetText( "МЕДИА НЕ НАЙДЕНО" )
 	else
-		self:SetText( "REQUEST URL" )
+		self:SetText( "ЗАПРОСИТЬ ССЫЛКУ" )
 	end
 
 	DButton.SetDisabled( self, disabled )

@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\autorun\\includes\\extensions\\sh_url.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 -----------------------------------------------------------------------------
 -- URI parsing, composition and relative URL resolution
 -- LuaSocket toolkit.
@@ -9,7 +11,6 @@
 -- Declare module
 -----------------------------------------------------------------------------
 local string = string
-local base = _G
 local table = table
 local pairs = pairs
 local ipairs = ipairs

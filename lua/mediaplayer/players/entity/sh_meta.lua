@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\players\\entity\\sh_meta.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 --[[---------------------------------------------------------
 	Media Player Entity Meta
 -----------------------------------------------------------]]

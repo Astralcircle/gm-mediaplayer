@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\autorun\\includes\\modules\\htmlmaterial.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local ipairs = ipairs
 local table = table
 local timer = timer

@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mp_menu\\sidebar.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 include "icons.lua"
 include "common.lua"
 include "sidebar_tabs.lua"
@@ -27,7 +29,7 @@ function PANEL:Init()
 	self.Tabs:Dock( FILL )
 
 	local curplaytab = vgui.Create( "MP.CurrentlyPlayingTab" )
-	self.Tabs:AddSheet( "CURRENTLY PLAYING", curplaytab, nil, false, false )
+	self.Tabs:AddSheet( "СЕЙЧАС ИГРАЕТ", curplaytab, nil, false, false )
 
 	-- TODO: Implement clientside media history for recently viewed tab
 	-- local panel = vgui.Create( "Panel" )
@@ -41,6 +43,10 @@ function PANEL:Init()
 
 end
 
+function PANEL:Think()
+    self:MakePopup()
+end
+
 function PANEL:Paint(w, h)
 
 	surface.SetDrawColor( 0, 0, 0, 140 )
@@ -51,7 +57,7 @@ end
 function PANEL:PerformLayout()
 
 	self:CenterVertical()
-	self:AlignLeft( 10 )
+	self:AlignRight( 10 )
 
 	self.Tabs:SizeToContentWidth()
 
@@ -221,76 +227,7 @@ end
 hook.Add( "OnContextMenuOpen", "MP.ShowSidebar", function()
 	MediaPlayer.ShowSidebar()
 end )
+
 hook.Add( "OnContextMenuClose", "MP.HideSidebar", function()
 	MediaPlayer.HideSidebar()
 end )
-
---[[--------------------------------------------
-	Sidebar UI test - remove this eventually
-----------------------------------------------]]
-
---[[inputhook.AddKeyPress( KEY_PAGEUP, "MP.ShowSidebarTest", function()
-	-- Create test fixture
-	local mp = MediaPlayer.Create( 'ui-test-player' )
-	mp:SetPlayerState( MP_STATE_PLAYING )
-
-	local function CreateMedia( title, duration, url, ownerName, ownerSteamID, startTime )
-		local media = MediaPlayer.GetMediaForUrl( url )
-
-		media._metadata = {
-			title = title,
-			duration = duration
-		}
-
-		media._OwnerName = ownerName
-		media._OwnerSteamID = ownerSteamID
-		media:StartTime( startTime or RealTime() )
-
-		return media
-	end
-
-	---------------------------------
-	-- Create current media object
-	---------------------------------
-
-	mp:SetMedia( CreateMedia(
-		"Test media - really long title test asdfljkasdfasdjfgasdf",
-		10,
-		"https://www.youtube.com/watch?v=IMorTE0lFLc",
-		"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-		"STEAM_0:1:15862026"
-	) )
-
-
-	---------------------------------
-	-- Create queued media
-	---------------------------------
-
-	mp:AddMedia( CreateMedia(
-		"Test media - really long title test asdfljkasdfasdjfgasdf",
-		86400,
-		"https://www.youtube.com/watch?v=IMorTE0lFLc",
-		"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-		"STEAM_0:1:15862026"
-	) )
-
-	mp:AddMedia( CreateMedia(
-		"Hello world",
-		1800,
-		"https://www.youtube.com/watch?v=IMorTE0lFLc",
-		"Sam",
-		"STEAM_0:1:15862026"
-	) )
-
-	mp:AddMedia( CreateMedia(
-		"ASDSDFawcasiudcg awlieufgawlie",
-		180,
-		"https://www.youtube.com/watch?v=IMorTE0lFLc",
-		"(╯°□°）╯︵ ┻━┻",
-		"STEAM_0:1:15862026",
-		RealTime() - 1800
-	) )
-
-	-- Display UI using fixture
-	MediaPlayer.ShowSidebar( mp )
-end )]]

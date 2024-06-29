@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\sh_history.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 --[[---------------------------------------------------------
 	Media Player History
 -----------------------------------------------------------]]
@@ -49,7 +51,7 @@ function MediaPlayer.History:LogRequest( media )
 			TableName,
 			media:UniqueID(),
 			sql.SQLStr( media:Url() ),
-			sql.SQLStr( ply:Nick() ),
+			sql.SQLStr( ply:NameWithoutTags() ),
 			ply:SteamID64() or -1 )
 
 	local result = sql.Query(query)

@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\services\\base\\shared.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local string = string
 local urllib = url
 local os = os

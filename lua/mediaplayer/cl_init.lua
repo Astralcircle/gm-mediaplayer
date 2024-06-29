@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\cl_init.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 if MediaPlayer then
 	-- TODO: compare versions?
 	if MediaPlayer.__refresh then
@@ -141,8 +143,9 @@ local common = {
 	-- font		= "Oswald",
 	font		= "Clear Sans Medium",
 	antialias	= true,
+	extended 	= true,
 	weight		= 400
 }
 
-surface.CreateFont( "MediaTitle", table.Merge(common, { size = 72 }) )
+surface.CreateFont( "MediaTitle", table.Merge(common, { size = 64 }) )
 surface.CreateFont( "MediaRequestButton", table.Merge(common, { size = 26 }) )

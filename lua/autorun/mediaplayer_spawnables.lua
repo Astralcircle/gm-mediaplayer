@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\autorun\\mediaplayer_spawnables.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local MediaPlayerClass = "mediaplayer_tv"
 
 local function AddMediaPlayerModel( spawnName, name, model, playerConfig )
@@ -20,21 +22,9 @@ AddMediaPlayerModel(
 	"models/hunter/plates/plate5x8.mdl",
 	{
 		angle = Angle(0, 90, 0),
-		offset = Vector(-118.8, 189.8, 2.5),
+		offset = Vector(-118.8, 189.8, 1.8),
 		width = 380,
 		height = 238
-	}
-)
-
-AddMediaPlayerModel(
-	"../spawnicons/models/props_phx/rt_screen",
-	"Small TV",
-	"models/props_phx/rt_screen.mdl",
-	{
-		angle = Angle(-90, 90, 0),
-		offset = Vector(6.5, 27.9, 35.3),
-		width = 56,
-		height = 33
 	}
 )
 

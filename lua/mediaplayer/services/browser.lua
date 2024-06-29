@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\services\\browser.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 DEFINE_BASECLASS( "mp_service_base" )
 
 SERVICE.Name 	= "Browser Base"

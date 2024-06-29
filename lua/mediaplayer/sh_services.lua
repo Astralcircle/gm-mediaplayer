@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\sh_services.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 MediaPlayer.Services = {}
 
 function MediaPlayer.RegisterService( service )
@@ -6,7 +8,7 @@ function MediaPlayer.RegisterService( service )
 
 	if service.Base then
 		base = MediaPlayer.Services[service.Base]
-	elseif MediaPlayer.Services.base then
+	elseif MediaPlayer.Services.base then  
 		base = MediaPlayer.Services.base
 	end
 
@@ -29,7 +31,7 @@ function MediaPlayer.GetValidServiceNames( whitelist )
 	local tbl = {}
 
 	for _, service in pairs(MediaPlayer.Services) do
-		if not rawget(service, "Abstract") then
+		if not rawget(service, "Abstract") then 
 			if whitelist then
 				if table.HasValue( whitelist, service.Id ) then
 					table.insert( tbl, service.Name )
@@ -102,10 +104,6 @@ do
 		-- Browser
 		"browser", -- base
 		"youtube",
-		"googledrive",
-		"twitch",
-		"twitchstream",
-		"vimeo",
 
 		-- HTML Resources
 		"resource", -- base
@@ -114,9 +112,7 @@ do
 		"webpage",
 
 		-- IGModAudioChannel
-		"audiofile",
-		"shoutcast",
-		"soundcloud"
+		"audiofile"
 	}
 
 	for _, name in ipairs(services) do

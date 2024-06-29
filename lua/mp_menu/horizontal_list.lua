@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mp_menu\\horizontal_list.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local PANEL = {}
 
 function PANEL:Init()

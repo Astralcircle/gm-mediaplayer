@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mp_menu\\common.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local ceil = math.ceil
 local clamp = math.Clamp
 
@@ -196,13 +198,13 @@ function ADDED_BY:Init()
 
 	self.PrefixLbl = vgui.Create( "DLabel", self )
 	self.PrefixLbl:SetFont( "MP.Prefix" )
-	self.PrefixLbl:SetText( "ADDED BY" )
+	self.PrefixLbl:SetText( "ДОБАВИЛ:" )
 	self.PrefixLbl:SetTextColor( color_white )
 	self.PrefixLbl:SetContentAlignment( 8 )
 
 	self.NameLbl = vgui.Create( "DLabel", self )
 	self.NameLbl:SetFont( "MP.AddedByName" )
-	self.NameLbl:SetText( "Unknown" )
+	self.NameLbl:SetText( "Неизвестно" )
 	self.NameLbl:SetTextColor( color_white )
 	self.NameLbl:SetContentAlignment( 8 )
 

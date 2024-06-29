@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\players\\entity\\shared.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 include "sh_meta.lua"
 
 DEFINE_BASECLASS( "mp_base" )

@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\shared.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 MediaPlayer = MediaPlayer or {}
 MP = MediaPlayer
 

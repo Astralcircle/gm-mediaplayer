@@ -1,10 +1,6 @@
+-- "addons\\gm-mediaplayer\\lua\\entities\\mediaplayer_tv\\shared.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 AddCSLuaFile()
-
-if SERVER then
-	resource.AddFile( "models/gmod_tower/suitetv_large.mdl" )
-	resource.AddFile( "materials/models/gmod_tower/suitetv_large.vmt" )
-	resource.AddSingleFile( "materials/entities/mediaplayer_tv.png" )
-end
 
 DEFINE_BASECLASS( "mediaplayer_base" )
 
@@ -15,6 +11,7 @@ ENT.Category 		= "Media Player"
 
 ENT.Type = "anim"
 ENT.Base = "mediaplayer_base"
+ENT.RenderGroup = 5
 
 ENT.Spawnable = true
 
@@ -52,10 +49,11 @@ else -- CLIENT
 	local DrawHTMLMaterial = DrawHTMLMaterial
 
 	local TEXT_ALIGN_CENTER = TEXT_ALIGN_CENTER
-	local color_white = color_white
+	local color_white = Color(255, 255, 255)
+	local color_black = Color(0, 0, 0)
 
 	local StaticMaterial = Material( "theater/STATIC" )
-	local TextScale = 700
+	local TextScale = 800
 
 	function ENT:Draw()
 		self:DrawModel()
@@ -93,7 +91,9 @@ else -- CLIENT
 		local scale = w / TextScale
 		Start3D2D( pos, ang, scale )
 			local tw, th = w / scale, h / scale
-			draw.SimpleText( "Press E to begin watching", "MediaTitle",
+			draw.SimpleText( "Нажмите E для просмотра", "MediaTitle",
+				tw/2 + 1, th/2 + 1, color_black, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
+			draw.SimpleText( "Нажмите E для просмотра", "MediaTitle",
 				tw/2, th/2, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )
 		End3D2D()
 	end

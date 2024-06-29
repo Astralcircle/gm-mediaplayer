@@ -1,7 +1,8 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\players\\base\\shared.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local MediaPlayer = MediaPlayer
 
 local HasFocus = system.HasFocus
-local MuteUnfocused = MediaPlayer.Cvars.MuteUnfocused
 local CeilPower2 = MediaPlayerUtils.CeilPower2
 
 --[[---------------------------------------------------------
@@ -176,13 +177,16 @@ end
 -- etc.). Override this for custom behavior.
 --
 function MEDIAPLAYER:IsPlayerPrivileged( ply )
-	return ply == self:GetOwner() or ply:IsAdmin() or
+	return ply == self:GetOwner() or
 		hook.Run( "MediaPlayerIsPlayerPrivileged", self, ply )
 end
 
 ---
 -- Media player update
 --
+
+local CVar = GetConVar("snd_mute_losefocus")
+
 function MEDIAPLAYER:Think()
 
 	if SERVER then
@@ -222,7 +226,7 @@ function MEDIAPLAYER:Think()
 		local volume
 
 		-- TODO: add a GAMEMODE hook to determine if sound should be muted
-		if not HasFocus() and MuteUnfocused:GetBool() then
+		if not HasFocus() and CVar:GetBool() then
 			volume = 0
 		else
 			volume = MediaPlayer.Volume()

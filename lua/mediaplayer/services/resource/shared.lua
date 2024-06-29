@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\services\\resource\\shared.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 SERVICE.Name 	= "Resource"
 SERVICE.Id 		= "res"
 SERVICE.Base 	= "browser"

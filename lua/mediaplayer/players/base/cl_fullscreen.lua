@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\players\\base\\cl_fullscreen.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local pcall = pcall
 local Color = Color
 local RealTime = RealTime

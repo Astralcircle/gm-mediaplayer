@@ -1,3 +1,5 @@
+-- "addons\\gm-mediaplayer\\lua\\mediaplayer\\cl_requests.lua"
+-- Retrieved by https://github.com/lewisclark/glua-steal
 local function GetMediaPlayerId( obj )
 	local mpId
 
