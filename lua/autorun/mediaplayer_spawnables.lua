@@ -1,4 +1,4 @@
-local function AddMediaPlayerModel(classname, printname, model, config, icon)
+local function AddMediaPlayerModel(classname, printname, model, icon, config)
 	list.Set("SpawnableEntities", "mediaplayer_tv_" .. classname, {
 		PrintName = printname,
 		ClassName = "mediaplayer_tv",
@@ -17,13 +17,13 @@ AddMediaPlayerModel(
 	"huge_billboard",
 	"Huge Billboard",
 	"models/hunter/plates/plate5x8.mdl",
+	"entities/mediaplayer_tv2.png",
 	{
 		angle = Angle(0, 90, 0),
 		offset = Vector(-118.8, 189.8, 2.5),
 		width = 380,
 		height = 238
-	},
-	"entities/mediaplayer_tv2.png"
+	}
 )
 
 AddMediaPlayerModel(
@@ -40,13 +40,11 @@ AddMediaPlayerModel(
 )
 
 if SERVER then
-
-	-- fix for media player owner not getting set on alternate model spawn
-	hook.Add("PlayerSpawnedSENT", "MediaPlayer.SetOwner", function(ply, ent)
+	hook.Add("PlayerSpawnedSENT", "MediaPlayer_SetOwner", function(ply, ent)
 		if not ent.IsMediaPlayerEntity then return end
 		ent:SetCreator(ply)
-		local mp = ent:GetMediaPlayer()
-		mp:SetOwner(ply)
-	end)
 
+		local mediaplayer = ent:GetMediaPlayer()
+		mediaplayer:SetOwner(ply)
+	end)
 end
