@@ -21,7 +21,6 @@ AddCSLuaFile "shared.lua"
 AddCSLuaFile "sh_events.lua"
 AddCSLuaFile "sh_mediaplayer.lua"
 AddCSLuaFile "sh_services.lua"
-AddCSLuaFile "sh_history.lua"
 AddCSLuaFile "sh_metadata.lua"
 AddCSLuaFile "sh_cvars.lua"
 
