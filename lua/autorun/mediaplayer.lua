@@ -81,11 +81,9 @@ local function LoadMediaPlayer()
 	if SERVER then
 		AddCSLuaFile "menubar/mp_options.lua"
 		AddCSLuaFile "properties/mediaplayer.lua"
-		AddCSLuaFile "sandbox/mediaplayer_dupe.lua"
 	else
 		include "menubar/mp_options.lua"
 		include "properties/mediaplayer.lua"
-		include "sandbox/mediaplayer_dupe.lua"
 	end
 
 	--
