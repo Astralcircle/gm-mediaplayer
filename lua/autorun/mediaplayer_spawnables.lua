@@ -39,6 +39,32 @@ AddMediaPlayerModel(
 	}
 )
 
+AddMediaPlayerModel(
+	"console_tv",
+	"Console TV",
+	"models/props/cs_militia/tv_console.mdl",
+	"entities/mediaplayer_tv4.png",
+	{
+		angle = Angle(-90, 90, 0),
+		offset = Vector(21.5,43-17 + 2.1,48-2),
+		width = 56,
+		height = 40
+	}
+)
+
+AddMediaPlayerModel(
+	"big_console_tv",
+	"Big Console TV",
+	"models/props/cs_militia/television_console01.mdl",
+	"entities/mediaplayer_tv5.png",
+	{
+		angle  = Angle(-90, 90, 0),
+		offset = Vector(13.55, 24, 57),
+		width  = 48,
+		height = 36
+	}
+)
+
 if SERVER then
 	hook.Add("PlayerSpawnedSENT", "MediaPlayer_SetOwner", function(ply, ent)
 		if not ent.IsMediaPlayerEntity then return end
