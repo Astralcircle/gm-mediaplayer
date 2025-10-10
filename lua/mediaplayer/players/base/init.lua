@@ -114,10 +114,6 @@ end
 
 function MEDIAPLAYER:AddListener( ply )
 
-	if MediaPlayer.DEBUG then
-		print( "MEDIAPLAYER.AddListener", self, ply )
-	end
-
 	table.insert( self._Listeners, ply )
 
 	-- Send player queue information
@@ -133,10 +129,6 @@ function MEDIAPLAYER:AddListener( ply )
 end
 
 function MEDIAPLAYER:RemoveListener( ply )
-
-	if MediaPlayer.DEBUG then
-		print( "MEDIAPLAYER.RemoveListener", self, ply )
-	end
 
 	local key = table.RemoveByValue( self._Listeners, ply )
 
@@ -167,10 +159,6 @@ end
 
 function MEDIAPLAYER:NextMedia( item )
 
-	if MediaPlayer.DEBUG then
-		print( "MEDIAPLAYER.NextMedia" )
-	end
-
 	local media = nil
 
 	-- Grab media from the queue if available
@@ -187,10 +175,6 @@ function MEDIAPLAYER:NextMedia( item )
 end
 
 function MEDIAPLAYER:SendMedia( media, ply )
-
-	if MediaPlayer.DEBUG then
-		print( "MEDIAPLAYER.SendMedia", media )
-	end
 
 	-- If we're only sending media to a single player, we don't need to update
 	-- all listeners
@@ -288,10 +272,6 @@ function MEDIAPLAYER:RequestMedia( media, ply )
 		return
 	end
 
-	if MediaPlayer.DEBUG then
-		print( "MEDIAPLAYER.RequestMedia", media, ply )
-	end
-
 	-- Queue must have space for the request
 	if #self._Queue == self:GetQueueLimit() then
 		self:NotifyPlayer( ply, "The media player queue is full." )
@@ -301,11 +281,6 @@ function MEDIAPLAYER:RequestMedia( media, ply )
 	-- Make sure the media isn't already in the queue
 	for _, s in ipairs(self._Queue) do
 		if s.Id == media.Id and s:UniqueID() == media:UniqueID() then
-			if MediaPlayer.DEBUG then
-				print("MediaPlayer.RequestMedia: Duplicate request", s.Id, media.Id)
-				print(media)
-				print(s)
-			end
 			self:NotifyPlayer( ply, "The requested media was already in the queue" )
 			return
 		end
@@ -364,10 +339,6 @@ function MEDIAPLAYER:RequestPause( ply )
 		return
 	end
 
-	if MediaPlayer.DEBUG then
-		print( "MEDIAPLAYER.RequestPause", ply )
-	end
-
 	self:PlayPause()
 
 end
@@ -387,10 +358,6 @@ function MEDIAPLAYER:RequestSkip( ply )
 		return
 	end
 
-	if MediaPlayer.DEBUG then
-		print( "MEDIAPLAYER.RequestSkip", ply )
-	end
-
 	self:OnMediaFinished()
 
 end
@@ -408,10 +375,6 @@ function MEDIAPLAYER:RequestSeek( ply, seekTime )
 	if not self:IsPlayerPrivileged(ply) then
 		self:NotifyPlayer(ply, "You don't have permission to do that.")
 		return
-	end
-
-	if MediaPlayer.DEBUG then
-		print( "MEDIAPLAYER.RequestSeek", ply, seekTime )
 	end
 
 	local media = self:CurrentMedia()
@@ -446,10 +409,6 @@ function MEDIAPLAYER:RequestRemove( ply, mediaUID )
 	-- Player must be valid and also a listener
 	if not ( IsValid(ply) and self:HasListener(ply) ) then
 		return
-	end
-
-	if MediaPlayer.DEBUG then
-		print( "MEDIAPLAYER.RequestRemove", ply, mediaUID )
 	end
 
 	local privileged = self:IsPlayerPrivileged(ply)
@@ -533,10 +492,6 @@ end
 -----------------------------------------------------------]]
 
 function MEDIAPLAYER:BroadcastUpdate( ply )
-
-	if MediaPlayer.DEBUG then
-		print( "MEDIAPLAYER.BroadcastUpdate", ply )
-	end
 
 	self:UpdateListeners()
 

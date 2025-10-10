@@ -19,10 +19,6 @@ function MediaPlayer.RegisterService( service )
 	-- Store service
 	MediaPlayer.Services[ service.Id ] = service
 
-	if MediaPlayer.DEBUG then
-		print( "MediaPlayer.RegisterService", service.Name )
-	end
-
 end
 
 function MediaPlayer.GetValidServiceNames( whitelist )

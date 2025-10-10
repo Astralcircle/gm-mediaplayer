@@ -33,11 +33,6 @@ function SERVICE:GetMetadata( callback )
 
 	local cache = MediaPlayer.Metadata:Query(self)
 
-	if MediaPlayer.DEBUG then
-		print("MediaPlayer.GetMetadata Cache results:")
-		PrintTable(cache or {})
-	end
-
 	if cache then
 
 		local metadata = {}

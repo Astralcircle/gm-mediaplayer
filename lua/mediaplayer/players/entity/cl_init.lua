@@ -26,10 +26,6 @@ function MEDIAPLAYER:NetReadUpdate()
 	local ent = Entity(entIndex)
 	local mpEnt = self.Entity
 
-	if MediaPlayer.DEBUG then
-		print("MEDIAPLAYER.NetReadUpdate[entity]: ", ent, entIndex)
-	end
-
 	if ent ~= mpEnt then
 		if IsValid(ent) and ent ~= NULL then
 			ent:InstallMediaPlayer( self )

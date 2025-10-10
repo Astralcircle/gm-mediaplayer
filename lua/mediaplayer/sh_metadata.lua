@@ -49,12 +49,6 @@ function MediaPlayer.Metadata:Query( media )
 	if not id then return end
 
 	local query = ("SELECT * FROM `%s` WHERE id='%s'"):format(TableName, id)
-
-	if MediaPlayer.DEBUG then
-		print("MediaPlayer.Metadata.Query")
-		print(query)
-	end
-
 	local results = sql.QueryRow(query)
 
 	if results then
@@ -73,12 +67,6 @@ function MediaPlayer.Metadata:Query( media )
 			-- Set metadata entry as expired
 			query = "UPDATE `%s` SET expired=1 WHERE id='%s'"
 			query = query:format( TableName, id )
-
-			if MediaPlayer.DEBUG then
-				print("MediaPlayer.Metadata.Query: Setting entry as expired")
-				print(query)
-			end
-
 			sql.Query( query )
 
 			return nil
@@ -108,11 +96,6 @@ function MediaPlayer.Metadata:Save( media )
 	local results = sql.Query(query)
 
 	if istable(results) then -- update
-
-		if MediaPlayer.DEBUG then
-			print("MediaPlayer.Metadata.Save Results:")
-			PrintTable(results)
-		end
 
 		results = results[1]
 
@@ -150,11 +133,6 @@ function MediaPlayer.Metadata:Save( media )
 			string.format( "%d,", os.time() ) ..
 			string.format( "%d)", os.time() )
 
-	end
-
-	if MediaPlayer.DEBUG then
-		print("MediaPlayer.Metadata.Save")
-		print(query)
 	end
 
 	results = sql.Query(query)

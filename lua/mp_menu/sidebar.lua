@@ -75,11 +75,6 @@ function SidebarPresenter:RegisterHook( hookname, callback )
 	table.insert( self.hooks, hookname )
 
 	hook.Add( hookname, "MP.SidebarPresenter", function(...)
-		if MediaPlayer.DEBUG then
-			print("MP.EVENTS.UI", hookname)
-			PrintTable({...})
-		end
-
 		return callback(...)
 	end )
 

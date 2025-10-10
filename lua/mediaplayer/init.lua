@@ -33,9 +33,6 @@ function MediaPlayer.net.ReadMediaPlayer()
 	local mp = MediaPlayer.GetById(mpId)
 
 	if not IsValid(mp) then
-		if MediaPlayer.DEBUG then
-			print("MEDIAPLAYER.Request: Invalid media player ID", mpId, mp)
-		end
 		return false
 	end
 

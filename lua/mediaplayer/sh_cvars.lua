@@ -1,11 +1,5 @@
 MediaPlayer.Cvars = {}
 
-MediaPlayer.Cvars.Debug = CreateConVar( "mediaplayer_debug", 0, FCVAR_DONTRECORD, "Enables media player debug mode; logs a bunch of actions into the console." )
-MediaPlayer.DEBUG = MediaPlayer.Cvars.Debug:GetBool()
-cvars.AddChangeCallback( "mediaplayer_debug", function(name, old, new)
-	MediaPlayer.DEBUG = new == 1
-end)
-
 MediaPlayer.Cvars.AllowWebpages = CreateConVar( "mediaplayer_allow_webpages", 0, {
 	FCVAR_ARCHIVE,
 	FCVAR_NOTIFY,

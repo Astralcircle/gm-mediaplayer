@@ -27,10 +27,6 @@ local function OnMediaUpdate( len )
 	local mpId = net.ReadString()
 	local mpType = net.ReadString()
 
-	if MediaPlayer.DEBUG then
-		print( "Received MEDIAPLAYER.Update", mpId, mpType )
-	end
-
 	local mp = MediaPlayer.GetById(mpId)
 	if not mp then
 		mp = MediaPlayer.Create( mpId, mpType )
@@ -78,19 +74,10 @@ net.Receive( "MEDIAPLAYER.Update", OnMediaUpdate )
 
 local function OnMediaSet( len )
 
-	if MediaPlayer.DEBUG then
-		print( "Received MEDIAPLAYER.Media" )
-	end
-
 	local mpId = net.ReadString()
 	local mp = MediaPlayer.GetById(mpId)
 
 	if not mp then
-		if MediaPlayer.DEBUG then
-			ErrorNoHalt("Received media for invalid mediaplayer\n")
-			print("ID: " .. tostring(mpId))
-			debug.Trace()
-		end
 		return
 	end
 
@@ -123,10 +110,6 @@ net.Receive( "MEDIAPLAYER.Media", OnMediaSet )
 
 local function OnMediaRemoved( len )
 
-	if MediaPlayer.DEBUG then
-		print( "Received MEDIAPLAYER.Remove" )
-	end
-
 	local mpId = net.ReadString()
 	local mp = MediaPlayer.GetById(mpId)
 	if not mp then return end
@@ -143,11 +126,6 @@ local function OnMediaSeek( len )
 	if not ( mp and (mp:GetPlayerState() >= MP_STATE_PLAYING) ) then return end
 
 	local startTime = mp.net.ReadTime()
-
-	if MediaPlayer.DEBUG then
-		print( "Received MEDIAPLAYER.Seek", mpId, startTime )
-	end
-
 	local media = mp:CurrentMedia()
 
 	if media then
@@ -167,13 +145,7 @@ local function OnMediaPause( len )
 	local mp = MediaPlayer.GetById(mpId)
 	if not mp then return end
 
-	local state = mp.net.ReadPlayerState()
-
-	if MediaPlayer.DEBUG then
-		print( "Received MEDIAPLAYER.Pause", mpId, state )
-	end
-
-	mp:SetPlayerState( state )
+	mp:SetPlayerState( mp.net.ReadPlayerState() )
 
 end
 net.Receive( "MEDIAPLAYER.Pause", OnMediaPause )

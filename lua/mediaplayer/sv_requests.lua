@@ -32,10 +32,6 @@ end
 
 net.Receive( "MEDIAPLAYER.RequestListen", RequestWrapper(function(mp, ply)
 
-	if MediaPlayer.DEBUG then
-		print("MEDIAPLAYER.RequestListen:", mpId, ply)
-	end
-
 	-- TODO: check if listener can actually be a listener
 	if mp:HasListener(ply) then
 		mp:RemoveListener(ply)
@@ -54,10 +50,6 @@ end) )
 --
 net.Receive( "MEDIAPLAYER.RequestUpdate", RequestWrapper(function(mp, ply)
 
-	if MediaPlayer.DEBUG then
-		print("MEDIAPLAYER.RequestUpdate:", mpId, ply)
-	end
-
 	mp:SendMedia( mp:GetMedia(), ply )
 
 end) )
@@ -65,11 +57,6 @@ end) )
 net.Receive( "MEDIAPLAYER.RequestMedia", RequestWrapper(function(mp, ply)
 
 	local url = net.ReadString()
-
-	if MediaPlayer.DEBUG then
-		print("MEDIAPLAYER.RequestMedia:", url, mp:GetId(), ply)
-	end
-
 	local allowWebpage = MediaPlayer.Cvars.AllowWebpages:GetBool()
 
 	-- Validate the URL
@@ -88,19 +75,11 @@ end) )
 
 net.Receive( "MEDIAPLAYER.RequestPause", RequestWrapper(function(mp, ply)
 
-	if MediaPlayer.DEBUG then
-		print("MEDIAPLAYER.RequestPause:", mp:GetId(), ply)
-	end
-
 	mp:RequestPause( ply )
 
 end) )
 
 net.Receive( "MEDIAPLAYER.RequestSkip", RequestWrapper(function(mp, ply)
-
-	if MediaPlayer.DEBUG then
-		print("MEDIAPLAYER.RequestSkip:", mp:GetId(), ply)
-	end
 
 	mp:RequestSkip( ply )
 
@@ -108,33 +87,17 @@ end) )
 
 net.Receive( "MEDIAPLAYER.RequestSeek", RequestWrapper(function(mp, ply)
 
-	local seekTime = net.ReadInt(32)
-
-	if MediaPlayer.DEBUG then
-		print("MEDIAPLAYER.RequestSeek:", mp:GetId(), seekTime, ply)
-	end
-
-	mp:RequestSeek( ply, seekTime )
+	mp:RequestSeek( ply, net.ReadInt(32) )
 
 end) )
 
 net.Receive( "MEDIAPLAYER.RequestRemove", RequestWrapper(function(mp, ply)
 
-	local mediaUID = net.ReadString()
-
-	if MediaPlayer.DEBUG then
-		print("MEDIAPLAYER.RequestRemove:", mp:GetId(), mediaUID, ply)
-	end
-
-	mp:RequestRemove( ply, mediaUID )
+	mp:RequestRemove( ply, net.ReadString() )
 
 end) )
 
 net.Receive( "MEDIAPLAYER.RequestRepeat", RequestWrapper(function(mp, ply)
-
-	if MediaPlayer.DEBUG then
-		print("MEDIAPLAYER.RequestRepeat:", mp:GetId(), ply)
-	end
 
 	mp:RequestRepeat( ply )
 
@@ -142,19 +105,11 @@ end) )
 
 net.Receive( "MEDIAPLAYER.RequestShuffle", RequestWrapper(function(mp, ply)
 
-	if MediaPlayer.DEBUG then
-		print("MEDIAPLAYER.RequestShuffle:", mp:GetId(), ply)
-	end
-
 	mp:RequestShuffle( ply )
 
 end) )
 
 net.Receive( "MEDIAPLAYER.RequestLock", RequestWrapper(function(mp, ply)
-
-	if MediaPlayer.DEBUG then
-		print("MEDIAPLAYER.RequestLock:", mp:GetId(), ply)
-	end
 
 	mp:RequestLock( ply )
 

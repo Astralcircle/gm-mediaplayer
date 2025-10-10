@@ -61,10 +61,6 @@ function MediaPlayer.Request( obj, url )
 	local mpId = GetMediaPlayerId( obj )
 	if not mpId then return end
 
-	if MediaPlayer.DEBUG then
-		print("MEDIAPLAYER.Request:", url, mpId)
-	end
-
 	local mp = MediaPlayer.GetById( mpId )
 
 	local allowWebpage = MediaPlayer.Cvars.AllowWebpages:GetBool()
@@ -95,10 +91,6 @@ function MediaPlayer.Request( obj, url )
 			net.WriteString( url )
 			media:NetWriteRequest() -- send any additional data
 		net.SendToServer()
-
-		if MediaPlayer.DEBUG then
-			print("MEDIAPLAYER.Request sent to server")
-		end
 	end
 
 	-- Prepare any data prior to requesting if necessary

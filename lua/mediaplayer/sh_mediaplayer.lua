@@ -13,11 +13,6 @@ local function setBaseClass( name, tbl )
 	local classname = "mp_" .. name
 
 	if MediaPlayer.Type[name] ~= nil then
-		if MediaPlayer.DEBUG then
-			Msg("Media player type '" .. name .. "' is already registered. ")
-			Msg("Clearing baseclass...\n")
-		end
-
 		-- HACK: removes registered baseclass if it already exists to avoid Lua
 		-- refresh table.Merge errors...
 		local _, BaseClassTable = debug.getupvalue(baseclass.Get, 1)
@@ -70,10 +65,6 @@ function MediaPlayer.Register( tbl )
 
 	-- Save player type
 	MediaPlayer.Type[name] = tbl
-
-	if MediaPlayer.DEBUG then
-		Msg( "MediaPlayer.Register\t" .. name .. "\n" )
-	end
 
 end
 
@@ -145,10 +136,6 @@ function MediaPlayer.Create( id, type )
 	-- Add to media player list
 	MediaPlayer.List[mp.id] = mp
 
-	if MediaPlayer.DEBUG then
-		print( "Created Media Player", mp, mp.Name, type )
-	end
-
 	return mp
 end
 
@@ -160,10 +147,6 @@ end
 function MediaPlayer.Destroy( mp )
 	-- TODO: does this need anything else?
 	MediaPlayer.List[mp.id] = nil
-
-	if MediaPlayer.DEBUG then
-		print( "Destroyed Media Player '" .. tostring(mp.id) .. "'" )
-	end
 end
 
 ---
